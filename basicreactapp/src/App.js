@@ -135,40 +135,136 @@ import "./App.css";
 // }
 
 
-// ***** USE-STATE REACT *****
+// ***** USE-STATE REACT - 01 *****
 
+// function MyApp(){
+//   const[count, setCount] = useState(230);  //this are just initial values
+//   const[inputText, setInputText] = useState('Anurag');
+
+//   const onIncrementClick = () => {
+//   //two times doesnt mean two times it only updates one time as it renders once only 
+//     setCount((prevCount) => {
+//       return prevCount + 1;
+//     })
+//     setCount(prevCount => prevCount + 1);    // re-rendering using state variables = this increase by 2 
+//     // setCount(prevCount => prevCount + 1) 
+//   }
+
+//   const onDecrementClick = () => {
+//     setCount(count - 1);    // re-rendering using state variables
+//     // console.log({count});
+//   }
+
+//   const onSearchChange = (event) => {
+//     // console.log(event.target.value);
+//     setInputText(event.target.value);   //re-rendering 
+//   }
+
+//   return (
+//     <>
+//     <h1>JSX</h1>
+//     <button onClick={onIncrementClick}> INCREMENT </button>
+//     <button onClick={onDecrementClick}> DECREMENT </button>
+//     <div>The current count is {count}</div>
+//     <div><input onChange={onSearchChange} placeholder="Search..."/></div>
+//     <div>{inputText}</div>
+//     </>
+//   )
+// }
+
+/***** REACT - USE STATE HOOK -02 */
+
+// const AddIncButton = (props) => {
+
+//   const {count, setCount, name} = props;
+
+//   const onIncrementClick = () => {
+//     setCount(count + 1)
+//     setCount((count => count + 1))
+//   }
+
+//   console.log(name);
+
+//   return (
+//     <button onClick={onIncrementClick}>INCREMENT</button>
+//   )
+// }
+
+
+// const DecButton = ({count, setCount, name}) => {
+
+//   const onDecrementClick = () => {
+//     setCount(count - 1);
+//   }
+//   console.log(name);
+
+//   return (
+//     <button onClick={onDecrementClick}>DECREMENT</button>
+//   )
+// }
+
+//**** form project *****/
 function MyApp(){
-  const[count, setCount] = useState(230);  //this are just initial values
-  const[inputText, setInputText] = useState('Anurag');
-
-  const onIncrementClick = () => {
-  //two times doesnt mean two times it only updates one time as it renders once only 
-    setCount((prevCount) => {
-      return prevCount + 1;
-    })
-    setCount(prevCount => prevCount + 1);    // re-rendering using state variables = this increase by 2 
-    // setCount(prevCount => prevCount + 1) 
+  const initalState = {
+    name : '',
+    email : '',
+    password : '',
+    phonenumber : '', 
+    altnumber : ''
   }
 
-  const onDecrementClick = () => {
-    setCount(count - 1);    // re-rendering using state variables
-    // console.log({count});
+  // const [count, setCount] = useState(0);  
+  //props - props is an object which is used to pass a value from parent to child component (parameters and arguments)
+  //{} - this enclosing is called jsx
+  const [form, setform] = useState(initalState);
+  const onNameChange = (e) => {
+    setform({...form, name : e.target.value});
   }
 
-  const onSearchChange = (event) => {
-    // console.log(event.target.value);
-    setInputText(event.target.value);   //re-rendering 
+  const onEmailChange = (e) => {
+    setform({...form, email : e.target.value});
   }
 
-  return (
-    <>
-    <h1>JSX</h1>
-    <button onClick={onIncrementClick}> INCREMENT </button>
-    <button onClick={onDecrementClick}> DECREMENT </button>
-    <div>The current count is {count}</div>
-    <div><input onChange={onSearchChange} placeholder="Search..."/></div>
-    <div>{inputText}</div>
-    </>
+  const onPhoneChange = (e) => {
+    setform({...form, password : e.target.value});
+  }
+
+  const onPasswordChange = (e) => {
+    setform({...form, phonenumber : e.target.value});
+  }
+
+  const onaltChange = (e) => {
+    setform({...form, altnumber : e.target.value});
+  }
+
+  console.log(form);
+
+  return(
+    <div className="Form">
+      {/* <AddIncButton count={count} setCount={setCount} name="Anurag"/>
+      <span>The value is {count}</span>
+      <DecButton count={count} setCount={setCount} name="Alok"/> */}
+      <div>
+        <label className="my-label">Name: </label>
+        <input className= "input" onChange={onNameChange} placeholder="Please enter your name...." />
+      </div>
+      <div>
+        <label className="my-label">Email: </label>
+        <input className= "input" onChange={onEmailChange}  placeholder="Please enter your email...." />
+      </div>
+      <div>
+        <label className="my-label">Password: </label>
+        <input className= "input" onChange={onPasswordChange}  placeholder="Please enter your Password...." />
+      </div>
+      <div>
+        <label className="my-label">Mobile Number: </label>
+        <input className= "input" onChange={onPhoneChange}  placeholder="Please enter your number...." />
+      </div>
+      <div>
+        <label className="my-label">LandLine: </label>
+        <input className= "input" onChange={onaltChange} placeholder="Please enter your home number...." />
+      </div>
+    </div>
   )
 }
 
